@@ -22,7 +22,7 @@
             <input type="button" id="showList" value="User List" />
         </form>
       
-        <script src="main.js">
+        <script src="main.js">// src is not needed use only <script>
 		const userList = [];
 		const userInfo = {};
 
@@ -30,7 +30,7 @@
 		const showList = document.getElementById('showList');
 
 		addUser.addEventListener('click', function info(event) {
-  			event.preventDefault();   // prevents page to reload
+  			event.preventDefault();   // prevents page to reload ( please use the preventdefault in the end of your function because it stops the pushing sequence
 
   			userInfo.firstName = document.getElementById('fname').value;
   			userInfo.lastName = document.getElementById('lname').value;
