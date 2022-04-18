@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JS-Course-ReDi</title>
-        <link rel="stylesheet" href="Style.css">
+        <link rel="stylesheet" href="Style.css"> // style.css is not inside your directory 
     </head>
     <body>
         <h1>My JS Code</h1><br><br>
@@ -22,7 +22,7 @@
         <input type="button" value="Add User" id="addUser" onClick="admission()">
         <input type="button" value="User List" id="showList" onClick="showUsers()">
         
-	<script src="main.js" defer>
+	<script src="main.js" defer> // src will not work with the script tag inside html also this javascript tag has to be before the funcation calling 
 		const userList = [{}];
 		const userInfo = {};
 
