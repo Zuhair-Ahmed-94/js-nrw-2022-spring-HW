@@ -6,7 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>JS-Course-ReDi</title>
         <link rel="stylesheet" href="Style.css">
-        <script src="main.js" defer>
+    </head>
+    <body>
+        <h1>My JS Code</h1><br><br>
+
+        <table class="admission_form">
+            <tr><td>First name:</td><td><input type="text" name="fname" value="" id="fname"></td></tr>
+            <tr><td>Last name:</td><td><input type="text" name="lname" value="" id="lname"></td></tr>
+            <tr><td>Birth date:</td><td><input type="date" name="bdate" value="" id="bdate"></td></tr>
+            <tr><td>E-Mail:</td><td><input type="email" name="email" value="" id="email"></td></tr>
+            <tr><td>Phone:</td><td><input type="tel" name="tel" value="" id="pnumber"></td></tr>
+            <tr><td>Post Code:</td><td><input type="number" name="number" value="" id="pcode"></td></tr>
+        </table>
+
+        <input type="button" value="Add User" id="addUser" onClick="admission()">
+        <input type="button" value="User List" id="showList" onClick="showUsers()">
+        
+	<script src="main.js" defer>
 		const userList = [{}];
 		const userInfo = {};
 
@@ -24,21 +40,5 @@
     			for(let i=0; i<userList.length; i++){console.log(userList[i])};
 		}
 	  </script>
-    </head>
-    <body>
-        <h1>My JS Code</h1><br><br>
-
-        <table class="admission_form">
-            <tr><td>First name:</td><td><input type="text" name="fname" value="" id="fname"></td></tr>
-            <tr><td>Last name:</td><td><input type="text" name="lname" value="" id="lname"></td></tr>
-            <tr><td>Birth date:</td><td><input type="date" name="bdate" value="" id="bdate"></td></tr>
-            <tr><td>E-Mail:</td><td><input type="email" name="email" value="" id="email"></td></tr>
-            <tr><td>Phone:</td><td><input type="tel" name="tel" value="" id="pnumber"></td></tr>
-            <tr><td>Post Code:</td><td><input type="number" name="number" value="" id="pcode"></td></tr>
-        </table>
-
-        <input type="button" value="Add User" id="addUser" onClick="admission()">
-        <input type="button" value="User List" id="showList" onClick="showUsers()">
-        
     </body>
 </html>
