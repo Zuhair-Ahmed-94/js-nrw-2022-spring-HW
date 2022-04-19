@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(28, 224, 159);
+}
+
+.form-container {
+  background-color: aquamarine;
+  text-align: center;
+}
+.bg-color {
+  background-color: rgb(127, 255, 157);
+}
+
+.form-container form {
+  width: 80%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+}
+.form-container form input {
+  height: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.form-container form button {
+  color: rgb(90, 88, 88);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.form-container form button:hover,
+.form-container form button:active {
+  background-color: rgb(140, 137, 137);
+  color: white;
+}
+
+#welcome {
+  font-size: 1.6rem;
+  color: cornflowerblue;
+}
