@@ -8,6 +8,8 @@
 //     curEl.classList.add('active');
 // }
 
-function changeColor() {
+// Zuhair : we want the user to input the color .. not the programmer changing it into green
+
+function changeColor() { 
   document.querySelector('.personal_info').style.color = 'green';
 }
