@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JS-Course-ReDi</title>
+    </head>
+    <body id="body">
+        <h1>I'm learning JavaScript:</h1><br><br>
+
+		<label for="selectColor">Pick a color:</label>
+		<select name="selectColor" id="selectColor">
+			<option value="">Choose</option>
+			<option style="color:#FFFFFF;" value="White">White</option>
+			<option style="color:#C0C0C0;" value="Silver">Silver</option>
+			<option style="color:#808080;" value="Gray">Gray</option>
+			<option style="color:#000000;" value="Black">Black</option>
+			<option style="color:#800080;" value="Purple">Purple</option>
+			<option style="color:#FF00FF;" value="Fuchsia">Fuchsia</option>
+			<option style="color:#000080;" value="Navy">Navy</option>
+			<option style="color:#0000FF;" value="Blue">Blue</option>
+			<option style="color:#008080;" value="Teal">Teal</option>
+			<option style="color:#00FFFF;" value="Aqua">Aqua</option>
+			<option style="color:#40E0D0;" value="Turquoise">Turquoise</option>
+			<option style="color:#808000;" value="Olive">Olive</option>
+			<option style="color:#008000;" value="Green">Green</option>
+			<option style="color:#00FF00;" value="Lime">Lime</option>
+			<option style="color:#FFFF00;" value="Yellow">Yellow</option>
+			<option style="color:#FF8C00;" value="Orange">Orange</option>
+			<option style="color:#FF0000;" value="Red">Red</option>
+			<option style="color:#800000;" value="Maroon">Maroon</option>
+		</select>
+		<button onclick="changeColor()">Change Color</button>
+		<div id="textLine">Hello Colors!</div>
+		<ul id="colorList"></ul>
+
+		<script>
+			function changeColor(){
+    			let selectedColor = document.getElementById('selectColor');
+    			let color = selectedColor.value;
+    			let textLine = document.getElementById('textLine');
+    			textLine.textContent = `Color: ${color}`;
+    			textLine.style.backgroundColor = color;
+    			let colorList = document.getElementById('colorList');
+    			let listItem = document.createElement('li');
+    			colorList.appendChild(listItem);
+    			listItem.textContent = color;
+    			listItem.style.backgroundColor = color;
+    			listItem.onclick = function () {
+        			textLine.textContent = `Color: ${color}`;
+        			textLine.style.backgroundColor = color;
+    			}
+			}
+		</script>
+    </body>
+</html>
