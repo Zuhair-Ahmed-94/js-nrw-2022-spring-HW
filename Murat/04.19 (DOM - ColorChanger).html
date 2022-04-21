@@ -9,8 +9,8 @@
     <body id="body">
         <h1>I'm learning JavaScript:</h1><br><br>
 
-		<label for="colors">Pick a color:</label>
-		<select name="colors" id="colors">
+		<label for="selectColor">Pick a color:</label>
+		<select name="selectColor" id="selectColor">
 			<option value="">Choose</option>
 			<option style="color:#FFFFFF;" value="White">White</option>
 			<option style="color:#C0C0C0;" value="Silver">Silver</option>
@@ -32,27 +32,25 @@
 			<option style="color:#800000;" value="Maroon">Maroon</option>
 		</select>
 		<button onclick="changeColor()">Change Color</button>
-		<div id="divElement">Hello Colors!</div>
+		<div id="textLine">Hello Colors!</div>
 		<ul id="colorList"></ul>
 
 		<script>
 			function changeColor(){
-    			let colorInput = document.getElementById('colors');
-    			let color = colorInput.value;
-
-    			let body = document.getElementById('body');
-    			body.style.backgroundColor = color;
-
-    			colorInput.value = "";
-
-    			let divElement = document.getElementById('divElement');
-    			divElement.textContent = color;
-
-    			let itemElement = document.createElement('li');
-    			itemElement.textContent = color;
-
-    			let listElement = document.getElementById("colorList");
-    			listElement.appendChild(itemElement);
+    				let selectedColor = document.getElementById('selectColor');
+    				let color = selectedColor.value;
+    				let textLine = document.getElementById('textLine');
+    				textLine.textContent = `Color: ${color}`;
+    				textLine.style.backgroundColor = color;
+    				let colorList = document.getElementById('colorList');
+    				let listItem = document.createElement('li');
+    				colorList.appendChild(listItem);
+    				listItem.textContent = color;
+    				listItem.style.backgroundColor = color;
+    				listItem.onclick = function () {
+        				textLine.textContent = `Color: ${color}`;
+        				textLine.style.backgroundColor = color;
+    				}
 			}
 		</script>
     </body>
