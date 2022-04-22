@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<title>JS-Course-ReDi</title>
+    </head>
+    <body>
+        <h1>I'm learning JavaScript:</h1><br><br>
+		<h2>Play Guess-the-Number Game!</h2>
+
+		<table>
+			<tr><th></th><th></th><th></th><th></th></tr> <!-- table header will be empty -->
+			<tr>
+				<td colspan="2">
+					<select id="diff" onchange="setDifficulty()">
+						<option>Select difficulty</option>
+						<option id="easy" value="Easy" onclick="newStart()">Easy (1-10)</option>
+						<option id="medium" value="Medium" onclick="newStart()">Medium (1-100)</option>
+						<option id="hard" value="Hard" onclick="newStart()">Hard (1-1000)</option>
+					</select>
+				</td>
+				<td colspan="2"><button onclick="newStart()">Start a new game</button></td>
+			</tr>
+			<tr>
+				<td><input id="input" type="number" min="1" max="1000"></td>
+				<td><button onclick="checkNumbers()">Guess</button></td>
+				<td></td>
+				<td><button onclick="suggestNumber()">Help me!</button></td>
+			</tr>
+		</table>
+		<div id="helpBox"></div>
+		<div id="guessTrack"></div>
+
+		<script>
+			let difficulty = '';
+			let guess = document.getElementById('input');
+			let number = Math.floor(Math.random()*10+1);;
+			let minGuess = 1;
+			let maxGuess = 1000;
+			let max = 1000;
+			let numOfGuess = 0;
+
+			function setDifficulty(){
+    			difficulty = document.getElementById('diff');
+    			if(difficulty.value === 'Easy'){
+    			    maxGuess = 10;
+    	    		number = Math.floor(Math.random()*10+1);
+    			} else if(difficulty.value === 'Medium'){
+    	    		maxGuess = 100;
+    	    		number = Math.floor(Math.random()*100+1);
+    			} else if(difficulty.value === 'Hard'){
+    			    maxGuess = 1000;
+    			    number = Math.floor(Math.random()*1000+1);
+    			}
+    			return number;
+			}
+
+			function newStart(){
+    			let output = document.getElementById('myDiv')
+    			numOfGuess = 0;
+    			output.textContent = "";
+    			console.log(number);
+			}
+
+			let suggestBox = document.getElementById('helpBox')
+			let suggestElement = document.createElement('h4');
+			suggestBox.appendChild(suggestElement);
+
+			function suggestNumber(){
+			    let suggestNum = Math.floor((minGuess/2 + maxGuess/2));
+			    suggestElement.textContent = `I suggest: ${suggestNum}`;
+			}
+
+			function checkNumbers() {
+    			numOfGuess++;
+    			console.log(number);
+    			guess = document.getElementById('input');
+    			if(guess.value-number < 0 && guess.value > minGuess){minGuess = guess.value;}; 
+    			if(guess.value-number > 0 && guess.value < maxGuess){maxGuess = guess.value;};
+
+    			let output = document.getElementById('guessTrack')
+    			let message = document.createElement('p');
+    			output.appendChild(message);
+
+    			if(guess.value == number){
+    	    		message.textContent = `${guess.value}: CONGRATULATIONS!!! You found it in ${numOfGuess} guesses!`;
+    	    		guess.value = "";
+    			} else if(guess.value < number){
+    	    		message.textContent = `${guess.value}: Go up!`;
+        			guess.value = "";
+    			} else if(guess.value > number){
+        			message.textContent = `${guess.value}: Go down!`;
+        			guess.value = "";
+    			}
+			}
+		</script>
+    </body>
+</html>
