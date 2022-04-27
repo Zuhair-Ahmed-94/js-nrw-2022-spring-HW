@@ -27,71 +27,78 @@
 				<td><button onclick="suggestNumber()">Help me!</button></td>
 			</tr>
 		</table>
-		<div id="helpBox"></div>
-		<div id="guessTrack"></div>
+		<div id="helpBox"></div>	<!-- the field to print suggestions -->
+		<div id="guessTrack"></div>	<!-- the field to print guesses and directions -->
 
-		<script>
-			let difficulty = '';
-			let guess = document.getElementById('input');
-			let number = Math.floor(Math.random()*10+1);;
-			let minGuess = 1;
-			let maxGuess = 1000;
-			let max = 1000;
-			let numOfGuess = 0;
+	<script>
+		let difficulty = '';				// declearing difficulty level as an empty string
+		let guess = document.getElementById('input');	// receives user's guess as an input
+		
+		// number: randomly produced number by computer which user is supposed be found by user
+		let number = Math.floor(Math.random()*10+1);;	// produces a random number between 1-10; this is the default difficulty (easy)
+		
+		// minGuess: the best guess of the user which is smaller than the number;
+		let minGuess = 1;				// we need to assign it to 1 as default to be able to ask for help without making any guess
+		
+		// minGuess: the best guess of the user which is bigger than the number;
+		let maxGuess = 1000;				// we need to assign it to 10, 100 or 1000 as default to be able to ask for help without making any guess
+		let numOfGuess = 0;				// number of guess for each game
 
-			function setDifficulty(){
-    			difficulty = document.getElementById('diff');
-    			if(difficulty.value === 'Easy'){
-    			    maxGuess = 10;
-    	    		number = Math.floor(Math.random()*10+1);
+		function setDifficulty(){
+    			difficulty = document.getElementById('diff');	// receives the difficulty level from the drop-down list
+    			if(difficulty.value === 'Easy'){		// if difficult is easy:
+    			    maxGuess = 10;				// sets the maxGuess according to the difficulty
+    	    			number = Math.floor(Math.random()*10+1);	// produce a random number 1-10 (easy)
     			} else if(difficulty.value === 'Medium'){
-    	    		maxGuess = 100;
-    	    		number = Math.floor(Math.random()*100+1);
+    	    			maxGuess = 100;
+    	    			number = Math.floor(Math.random()*100+1);	// produce a random number 1-100 (medium)
     			} else if(difficulty.value === 'Hard'){
-    			    maxGuess = 1000;
-    			    number = Math.floor(Math.random()*1000+1);
+    			    	maxGuess = 1000;
+    			    	number = Math.floor(Math.random()*1000+1);	// produce a random number 1-1000 (hard)
     			}
-    			return number;
-			}
+		}
 
-			function newStart(){
+		function newStart(){
+			window.location.reload();			// refresh the page to delete all records
     			let output = document.getElementById('myDiv')
-    			numOfGuess = 0;
-    			output.textContent = "";
+    			numOfGuess = 0;					//  sets the number of guesse to zero for a new game
+    			output.textContent = "";			// output: directions to print on the screen ie. "go up, go down"
     			console.log(number);
-			}
+		}
 
-			let suggestBox = document.getElementById('helpBox')
-			let suggestElement = document.createElement('h4');
-			suggestBox.appendChild(suggestElement);
+		let suggestBox = document.getElementById('helpBox')	// the box to print the suggestions
+		let suggestElement = document.createElement('h4');	// the sugessions will be an h4 element in html
+		suggestBox.appendChild(suggestElement);			// declearing the h4 element as a child of helpBox div
 
-			function suggestNumber(){
-			    let suggestNum = Math.floor((minGuess/2 + maxGuess/2));
-			    suggestElement.textContent = `I suggest: ${suggestNum}`;
-			}
+		function suggestNumber(){
+		    let suggestNum = Math.floor((minGuess/2 + maxGuess/2));	// the suggestion is the half of the addition of min best guess and max best guess
+		    suggestElement.textContent = `I suggest: ${suggestNum}`;	//  prints the suggestion
+		}
 
-			function checkNumbers() {
-    			numOfGuess++;
-    			console.log(number);
-    			guess = document.getElementById('input');
-    			if(guess.value-number < 0 && guess.value > minGuess){minGuess = guess.value;}; 
-    			if(guess.value-number > 0 && guess.value < maxGuess){maxGuess = guess.value;};
+		function checkNumbers() { 		// checks the guessed number and the randomly produced number
+    			numOfGuess++;						// increases the number of guess by 1
+    			guess = document.getElementById('input');		// receive the guess as an input from html
+    			if(guess.value-number < 0 && guess.value > minGuess){minGuess = guess.value;}; 	// sets the new min best guess
+    			if(guess.value-number > 0 && guess.value < maxGuess){maxGuess = guess.value;};	// sets the new max best guess
 
-    			let output = document.getElementById('guessTrack')
-    			let message = document.createElement('p');
+    			let output = document.getElementById('guessTrack')	// keep track of the guesses
+    			let message = document.createElement('p');		// creates a new record for the guess track
+			let statistics = document.createElement('p');		// creates a message to give the statistics
     			output.appendChild(message);
+			output.appendChild(statistics);
 
     			if(guess.value == number){
-    	    		message.textContent = `${guess.value}: CONGRATULATIONS!!! You found it in ${numOfGuess} guesses!`;
-    	    		guess.value = "";
+    	    			message.textContent = `Your ${numOfGuess}. guess is ${guess.value}: CONGRATULATIONS!!!`;	// final message if the number is found
+				statistics.textContent = `You found it in ${numOfGuess} guesses!`;				// final statisctics
+    	    			guess.value = "";										// clears the input field
     			} else if(guess.value < number){
-    	    		message.textContent = `${guess.value}: Go up!`;
-        			guess.value = "";
+    	    			message.textContent = `Your ${numOfGuess}. guess is ${guess.value}: Go up!`;		// directions for user (go up)
+        			guess.value = "";									// clears the input field
     			} else if(guess.value > number){
-        			message.textContent = `${guess.value}: Go down!`;
-        			guess.value = "";
+        			message.textContent = `Your ${numOfGuess}. guess is ${guess.value}: Go down!`;		// directions for user (go down)
+        			guess.value = "";									// clears the input field
     			}
-			}
-		</script>
+		}
+	</script>
     </body>
 </html>
