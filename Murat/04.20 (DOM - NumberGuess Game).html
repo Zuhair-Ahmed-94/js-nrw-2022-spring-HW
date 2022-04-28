@@ -47,21 +47,21 @@
 		function setDifficulty(){
     			difficulty = document.getElementById('diff');	// receives the difficulty level from the drop-down list
     			if(difficulty.value === 'Easy'){		// if difficult is easy:
-    			    maxGuess = 10;				// sets the maxGuess according to the difficulty
+    			 	maxGuess = 10;				// sets the maxGuess according to the difficulty; thus we can be able to ask for help without makin any guess
     	    			number = Math.floor(Math.random()*10+1);	// produce a random number 1-10 (easy)
     			} else if(difficulty.value === 'Medium'){
-    	    			maxGuess = 100;
+    	    			maxGuess = 100;				// sets the maxGuess according to the difficulty; thus we can be able to ask for help without makin any guess
     	    			number = Math.floor(Math.random()*100+1);	// produce a random number 1-100 (medium)
     			} else if(difficulty.value === 'Hard'){
-    			    	maxGuess = 1000;
+    			    	maxGuess = 1000;			// sets the maxGuess according to the difficulty; thus we can be able to ask for help without makin any guess
     			    	number = Math.floor(Math.random()*1000+1);	// produce a random number 1-1000 (hard)
     			}
 		}
 
 		function newStart(){
 			window.location.reload();			// refresh the page to delete all records
-    			let output = document.getElementById('myDiv')
-    			numOfGuess = 0;					//  sets the number of guesse to zero for a new game
+    			let output = document.getElementById('myDiv')	// building a bridge between html and js to print the result
+    			numOfGuess = 0;					// sets the number of guesse to zero for a new game
     			output.textContent = "";			// output: directions to print on the screen ie. "go up, go down"
     			console.log(number);
 		}
