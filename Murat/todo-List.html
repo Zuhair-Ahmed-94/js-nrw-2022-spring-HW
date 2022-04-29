@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="Style.css">
+        <title>JS-Course-ReDi</title>
+    </head>
+    <br>
+        <h1>I'm learning JavaScript:</h1><br>
+		<h2>To-Do List: </h2>
+
+        <input id="new_input">
+        <button id="add_item" onclick="addItem()">Add</button></br>
+        </br><button id="show_list" onclick="showList()">Show List</button>
+        <button id="delete_all" onclick="deleteAll()">Delet All</button>
+        <ul id="listField"></ul>
+
+		<script>
+            let listArray = [];
+            listArray = [ "eat", "drink", "learn", "code", "sleep" ];
+            let newItem = document.getElementById('new_input');
+            let listField = document.getElementById('listField');
+
+
+
+            function addItem(){
+                listArray.push(newItem.value);
+                let listElement = document.createElement('p');
+                listField.appendChild(listElement);
+                listElement.textContent = '"' + newItem.value + '" added!';
+
+                newItem.value = "";
+            }
+
+            function showList(){
+                for(let i=0; i<listArray.length; i++){
+                    let listItem = document.createElement('li');
+                    listItem.textContent = listArray[i];
+                    listField.appendChild(listItem);
+
+                    listItem.onclick = function(){
+                        if (listItem.style.textDecoration == "line-through"){
+                            listItem.style.textDecoration = "";} 
+                        else {listItem.style.textDecoration = "line-through";}
+                    }
+                }
+            }
+
+            function deleteAll(){
+                let itemList = listField.children
+                for(let i=0; i<listField.children.length; i++){
+                    itemList[i].style.textDecoration == "line-through";
+                }
+            }
+        </script>
+    </body>
+</html>
