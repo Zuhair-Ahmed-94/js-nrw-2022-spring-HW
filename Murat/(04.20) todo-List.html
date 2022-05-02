@@ -4,24 +4,42 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style></style>
+	<style>
+	    #un_delete{				/* set the CSS properties of the "un_delete" button */
+                position: absolute;
+                margin: 0; padding: 0;
+                width: 90px; height: 21px;
+            }
+            .buttonValue {			/* set the CSS properties of the <p> tag on "un_delete" button */
+                position: relative;		/* position is set to its parent, "un_delete" button */
+                margin: 0; padding: 0;
+            }
+	</style>
         <title>JS-Course-ReDi</title>
     </head>
     <br>
         <h1>I'm learning JavaScript:</h1><br>
 	<h2>To-Do List: </h2>
 
-        <input id="new_input">
-        <button id="add_item" onclick="addItem()">Add</button></br>
-        </br><button id="show_list" onclick="showList()">Show List</button>
-        <button id="delete_all" onclick="deleteAll()">Delet All</button>
-        <ul id="listField"></ul>
+        <input id="new_input">							<!-- input field -->
+        <button id="add_item" onclick="addItem()">Add</button></br>		<!-- "Add" button triggers addItem() function -->
+        </br><button id="show_list" onclick="showList()">Show List</button>	<!-- "Show List" button triggers showList() function -->
+        <button id="un_delete" onclick="un_delete()"></button>			<!-- creating here an empty button, which triggers un_delete() function -->
+        <ul id="listField"></ul>						<!-- creating here an empty <ul> tag, which which we add our list items in it -->
 
 	<script>
             let listArray = [];
             listArray = [ "eat", "drink", "learn", "code", "sleep" ];
             let newItem = document.getElementById('new_input');			// declearing inputField from html in JS to receive new items
             let listField = document.getElementById('listField');		// listField is the field to output my complete list
+	    let listItem = document.createElement('li');
+		
+	    // the declerations below is about the last button added to the html file "Delete All"/"Undelete All" button!
+	    let un_deleteButton = document.getElementById('un_delete');		// define "Delete All" button to JS file
+	    let buttonValue = document.createElement('p');			// create a <p> tag within the button to change the text later
+	    un_deleteButton.appendChild(buttonValue);				// that <p> tag will be a child of "Delete All" button
+	    buttonValue.classList.add('buttonValue');				// I need to add a css class to the <p> tag to receive its css properties
+            buttonValue.textContent = "Delete All";				// set the <p> tag to "Delete All", so user can see "Delete All" text on the button
 
             function addItem(){
                 if(newItem.value !== ""){					// it's necessary to prevent bugs in case of clicking "add" button without an entry
@@ -47,10 +65,16 @@
                 }
             }
 
-            function deleteAll(){						// that function doesn't work yet! I'm working on it...
-                let itemList = listField.children
-                for(let i=0; i<listField.children.length; i++){
-                    itemList[i].style.textDecoration == "line-through";
+	    function un_delete(){
+                let items = listField.children;				// receive all the children of listField (this is the complete list of my todos)
+                for(let i=0; i<items.length; i++){			// iterate to reach all the elements
+                    if(items[i].style.textDecoration == ""){		// reset the items' textDecoration
+                        items[i].style.textDecoration = "line-through";	// set the items' textDecoration to "line-through"
+                        buttonValue.textContent = "Undelete All";	// change the text on the button to "Delete All"
+                    } else {
+                        items[i].style.textDecoration = "";		// reset the items' textDecoration
+                        buttonValue.textContent = "Delete All";		// change the text on the button to "Undelete All"
+                    }
                 }
             }
         </script>
