@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="Style.css">
+	<style></style>
         <title>JS-Course-ReDi</title>
     </head>
     <br>
         <h1>I'm learning JavaScript:</h1><br>
-		<h2>To-Do List: </h2>
+	<h2>To-Do List: </h2>
 
         <input id="new_input">
         <button id="add_item" onclick="addItem()">Add</button></br>
@@ -17,38 +17,37 @@
         <button id="delete_all" onclick="deleteAll()">Delet All</button>
         <ul id="listField"></ul>
 
-		<script>
+	<script>
             let listArray = [];
             listArray = [ "eat", "drink", "learn", "code", "sleep" ];
-            let newItem = document.getElementById('new_input');
-            let listField = document.getElementById('listField');
-
-
+            let newItem = document.getElementById('new_input');			// declearing inputField from html in JS to receive new items
+            let listField = document.getElementById('listField');		// listField is the field to output my complete list
 
             function addItem(){
-                listArray.push(newItem.value);
-                let listElement = document.createElement('p');
-                listField.appendChild(listElement);
-                listElement.textContent = '"' + newItem.value + '" added!';
-
-                newItem.value = "";
+                if(newItem.value !== ""){					// it's necessary to prevent bugs in case of clicking "add" button without an entry
+                    listArray.push(newItem.value);				// adds new item to todoList
+                    let listElement = document.createElement('p');		// declearing the newItem as a <p> element in html
+                    listField.appendChild(listElement);				// the newItem will be created as a child of listELement
+                    listElement.textContent = '"' + newItem.value + '" added!';	// give feedback that the newItem succesfully added to the todoList
+                }
+                newItem.value = "";						// set the inputField to an empty string
             }
 
-            function showList(){
-                for(let i=0; i<listArray.length; i++){
-                    let listItem = document.createElement('li');
-                    listItem.textContent = listArray[i];
-                    listField.appendChild(listItem);
+            function showList(){						// show the most recent list in the browser
+                for(let i=0; i<listArray.length; i++){				
+                    let listItem = document.createElement('li');		// create a <li> element to show the each item in the list
+                    listItem.textContent = listArray[i];			// set the items content as of the array (in order)
+                    listField.appendChild(listItem);				// define where to put (show) that item
 
-                    listItem.onclick = function(){
-                        if (listItem.style.textDecoration == "line-through"){
-                            listItem.style.textDecoration = "";} 
-                        else {listItem.style.textDecoration = "line-through";}
+                    listItem.onclick = function(){				// create a function to cross/uncross the item if clicked
+                        if (listItem.style.textDecoration == "line-through"){	// if it's already "line-through"
+                            listItem.style.textDecoration = "";} 		// reset the item (like not "line-through")
+                        else {listItem.style.textDecoration = "line-through";}	// if it's not yet set to "line-through", set it to "line-through"
                     }
                 }
             }
 
-            function deleteAll(){
+            function deleteAll(){						// that function doesn't work yet! I'm working on it...
                 let itemList = listField.children
                 for(let i=0; i<listField.children.length; i++){
                     itemList[i].style.textDecoration == "line-through";
