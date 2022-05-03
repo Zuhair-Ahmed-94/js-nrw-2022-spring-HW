@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <input type="radio" id="gameDifi" value="easy" name="radio1" onclick="set()" checked>Easy</br>
+    <input type="radio" id="gameDifi" value="mid" name="radio1"  onclick="set()">medium</br>
+    <input type="radio" id="gameDifi" value="hard" name="radio1" onclick="set()">Hard</br>
+    <p>The total guess game: <span id="count">0</span></p>
+    <input  type="number" id="inputValue">
+    <button id="btn" onclick="guessGame()">Click</button>
+    <button id="reset" onclick="newGame()">newGame</button>
+    <button id="help" onclick="suggestValue()">Help</button>
+    <p>The guess game notation: <span id="result"></span></p>
+    <ul id="list">
+
+    </ul>
+
+    <script src="index.js"></script>
+</body>
+</html>

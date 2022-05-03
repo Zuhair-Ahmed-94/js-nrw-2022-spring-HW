@@ -1,0 +1,27 @@
+body {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+}
+
+#inputValue, #btn, #help, #reset{
+  
+  
+    margin: .5em;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    padding: 4px;
+    background-color: antiquewhite;
+
+    
+}
+
+#btn:hover, #reset:hover, #help:hover {
+    background-color: blue;
+    color: aliceblue;
+   
+    cursor: pointer;
+}
+
