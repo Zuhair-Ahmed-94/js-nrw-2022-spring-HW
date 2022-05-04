@@ -1,0 +1,38 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="stylesheet" href="style.css">
+       
+        <title>DOM Manipulation</title>
+    </head>
+    
+    <body>
+    
+    <h2 id="title">Class List</h2>
+    <div id="info" data-name="Latif" dat-age= "23" data-living-in =  "Germany">
+        Personal Data
+    </div>
+    
+    
+    </body>
+    
+    
+   <script type="text/javascript">
+
+    const myData = document.getElementById("info");
+
+    myData.dataset.name = "Turaan";
+    myData.dataset.age = 30;
+    myData.dataset.livingIn = "Germany"
+
+    // myData.removeAttribute('data-name');
+    myData.removeAttribute('data-age');
+
+    console.log(myData.dataset)
+    
+    
+    
+    </script>
+    </html> 
