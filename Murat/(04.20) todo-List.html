@@ -5,15 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
-	    #un_delete{				/* set the CSS properties of the "un_delete" button */
-                position: absolute;
-                margin: 0; padding: 0;
-                width: 90px; height: 21px;
-            }
-            .buttonValue {			/* set the CSS properties of the <p> tag on "un_delete" button */
-                position: relative;		/* position is set to its parent, "un_delete" button */
-                margin: 0; padding: 0;
-            }
+	    	#selectAll{ position: absolute; margin: 0; padding: 0; width: 90px; height: 21px;}
+        	.buttonValue { position: relative; margin: 0; padding: 0; }
 	</style>
         <title>JS-Course-ReDi</title>
     </head>
@@ -21,62 +14,70 @@
         <h1>I'm learning JavaScript:</h1><br>
 	<h2>To-Do List: </h2>
 
-        <input id="new_input">							<!-- input field -->
-        <button id="add_item" onclick="addItem()">Add</button></br>		<!-- "Add" button triggers addItem() function -->
-        </br><button id="show_list" onclick="showList()">Show List</button>	<!-- "Show List" button triggers showList() function -->
-        <button id="un_delete" onclick="un_delete()"></button>			<!-- creating here an empty button, which triggers un_delete() function -->
-        <ul id="listField"></ul>						<!-- creating here an empty <ul> tag, which which we add our list items in it -->
+    <input id="newInput">					<!-- input field -->
+    <button onclick="addItem()">Add</button>	            	<!-- "Add" button triggers addItem() function -->
+    <button id="selectAll" onclick="selectAll()"></button>  	<!-- creating here an empty button, which triggers un_delete() function -->
+    <ul id="listField"></ul>					<!-- creating here an empty <ul> tag, which which we add our list items in it -->
 
 	<script>
-            let listArray = [];
-            listArray = [ "eat", "drink", "learn", "code", "sleep" ];
-            let newItem = document.getElementById('new_input');			// declearing inputField from html in JS to receive new items
-            let listField = document.getElementById('listField');		// listField is the field to output my complete list
-	    let listItem = document.createElement('li');
-		
+        let listArray = [];
+        listArray = [ "eat", "drink", "learn", "code", "sleep" ];
+        let newItem = document.getElementById('newInput');		// declearing inputField from html in JS to receive new items
+        let listField = document.getElementById('listField');		// listField is the field to output my complete list
+	    
 	    // the declerations below is about the last button added to the html file "Delete All"/"Undelete All" button!
-	    let un_deleteButton = document.getElementById('un_delete');		// define "Delete All" button to JS file
-	    let buttonValue = document.createElement('p');			// create a <p> tag within the button to change the text later
-	    un_deleteButton.appendChild(buttonValue);				// that <p> tag will be a child of "Delete All" button
-	    buttonValue.classList.add('buttonValue');				// I need to add a css class to the <p> tag to receive its css properties
-            buttonValue.textContent = "Delete All";				// set the <p> tag to "Delete All", so user can see "Delete All" text on the button
+	    let un_deleteButton = document.getElementById('selectAll');	// define "Delete All" button to JS file
+	    let buttonValue = document.createElement('p');		// create a <p> tag within the button to change the text later
+	    un_deleteButton.appendChild(buttonValue);			// that <p> tag will be a child of "Delete All" button
+	    buttonValue.classList.add('buttonValue');			// I need to add a css class to the <p> tag to receive its css properties
+        buttonValue.textContent = "Delete All";				// set the <p> tag to "Delete All", so user can see "Delete All" text on the button
 
-            function addItem(){
-                if(newItem.value !== ""){					// it's necessary to prevent bugs in case of clicking "add" button without an entry
-                    listArray.push(newItem.value);				// adds new item to todoList
-                    let listElement = document.createElement('p');		// declearing the newItem as a <p> element in html
-                    listField.appendChild(listElement);				// the newItem will be created as a child of listELement
-                    listElement.textContent = '"' + newItem.value + '" added!';	// give feedback that the newItem succesfully added to the todoList
-                }
-                newItem.value = "";						// set the inputField to an empty string
+        for(let i=0; i<listArray.length; i++){				
+            let listItem = document.createElement('li');		// create a <li> element to show the each item in the list
+            listItem.textContent = listArray[i];			// set the items content as of the array (in order)
+            listField.appendChild(listItem);				// define where to put (show) that item
+            listItem.onclick = function(){				// create a function to cross/uncross the item if clicked
+                if (listItem.style.textDecoration == "line-through"){	// if it's already "line-through"
+                    listItem.style.textDecoration = "";} 		// reset the item (like not "line-through")
+                else {listItem.style.textDecoration = "line-through";}	// if it's not yet set to "line-through", set it to "line-through"
             }
+        }
 
-            function showList(){						// show the most recent list in the browser
-                for(let i=0; i<listArray.length; i++){				
-                    let listItem = document.createElement('li');		// create a <li> element to show the each item in the list
-                    listItem.textContent = listArray[i];			// set the items content as of the array (in order)
-                    listField.appendChild(listItem);				// define where to put (show) that item
-
-                    listItem.onclick = function(){				// create a function to cross/uncross the item if clicked
-                        if (listItem.style.textDecoration == "line-through"){	// if it's already "line-through"
-                            listItem.style.textDecoration = "";} 		// reset the item (like not "line-through")
-                        else {listItem.style.textDecoration = "line-through";}	// if it's not yet set to "line-through", set it to "line-through"
-                    }
-                }
+        function addItem(){
+            let listItem = document.createElement('li');	// declearing the newItem as a <li> element in html
+            if(newItem.value !== ""){				// it's necessary to prevent bugs in case of clicking "add" button without an entry
+                listArray.push(newItem.value);			// adds new item to todoList
+                listField.appendChild(listItem);		// the newItem will be created as a child of listELement
+                listItem.textContent =newItem.value;		// give feedback that the newItem succesfully added to the todoList
+                listItem.style.textDecoration = "";
             }
-
-	    function un_delete(){
-                let items = listField.children;				// receive all the children of listField (this is the complete list of my todos)
-                for(let i=0; i<items.length; i++){			// iterate to reach all the elements
-                    if(items[i].style.textDecoration == ""){		// reset the items' textDecoration
-                        items[i].style.textDecoration = "line-through";	// set the items' textDecoration to "line-through"
-                        buttonValue.textContent = "Undelete All";	// change the text on the button to "Delete All"
-                    } else {
-                        items[i].style.textDecoration = "";		// reset the items' textDecoration
-                        buttonValue.textContent = "Delete All";		// change the text on the button to "Undelete All"
-                    }
-                }
+            
+            listItem.onclick = function(){				// create a function to cross/uncross the item if clicked
+                if (listItem.style.textDecoration == "line-through"){	// if it's already "line-through"
+                    listItem.style.textDecoration = "";} 		// reset the item (like not "line-through")
+                 else {listItem.style.textDecoration = "line-through";}	// if it's not yet set to "line-through", set it to "line-through"
             }
+            newItem.value = "";						// set the inputField to an empty string
+        }
+
+        // decide: if buttonValue is "Delete All" call function deleteAll(), otherwise call function undeleleAll()
+        function selectAll(){ (buttonValue.textContent == "Delete All")? deleteAll() : undeleteAll();}
+
+        function deleteAll(){
+            let items = listField.children;                     // receive all the children of listField (this is the complete list of my todos)
+            for(let i=0; i<items.length; i++){
+                items[i].style.textDecoration = "line-through"; // set the items' textDecoration to "line-through"
+            }
+            buttonValue.textContent = "Undelete All";           // change the text on the button to "Delete All"
+        }
+
+        function undeleteAll(){
+            let items = listField.children;		// receive all the children of listField (this is the complete list of my todos)
+            for(let i=0; i<items.length; i++){
+                items[i].style.textDecoration = "";     // reset the items' textDecoration
+            }
+            buttonValue.textContent = "Delete All";     // change the text on the button to "undelete All"
+        }
         </script>
     </body>
 </html>
