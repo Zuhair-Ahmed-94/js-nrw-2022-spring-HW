@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <h2 id="title">DOM Manipulation - Insert Node</h2>
+
+    <ul id="todolist">
+        <li>wake up</li>
+        <li>take shower</li>
+        <li id="eat">eat breakfast</li>
+        <li>go to work follow your drama!</li>
+    </ul>
+
+    <script type="text/javascript">
+
+        const todoList = document.getElementById('todolist');
+        const eat = document.getElementById('eat'); 
+
+        console.log(todoList);
+        console.log(eat)
+
+        const newTask = document.createElement('li');
+        newTask.textContent = "cook breakfast";
+
+        const firstTask = document.createElement('li');
+        firstTask.textContent = "sleep full"
+
+        // todoList.insertBefore(newTask, eat);
+
+
+        function addToBeginning(parent, toInsert) {
+            const firstChild = parent.firstChild;
+            
+            parent.insertBefore(toInsert, firstChild);
+        
+        }
+
+
+        addToBeginning(todoList, firstTask)
+
+
+    </script>
+    
+</body>
+</html>
