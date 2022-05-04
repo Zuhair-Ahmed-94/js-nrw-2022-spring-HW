@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+    <h2 id="title">DOM Manipulation - Clone Node</h2>
+    
+    <ul id="list">
+        <li>apple</li>
+        <li>banana</li>
+        <li>mango</li>
+
+    </ul>
+
+
+
+
+
+    <script type="text/javascript">
+       const list = document.querySelector('#list');
+       const listChildren = list.children;
+
+       const bananaItem = listChildren[1];
+
+       const bananaCopy = bananaItem.cloneNode(true);
+       
+       list.appendChild(bananaCopy);
+
+
+        
+    </script>
+    
+</body>
+</html>
