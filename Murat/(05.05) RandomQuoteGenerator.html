@@ -74,7 +74,7 @@
             callCard();	// call the function for the first time to see a card at the beginning
 
             function callCard(){
-                let cardNumber = Math.floor(Math.random()*quotes.length);	// produce a random number, which cannot be bigger then the number of the quotes array
+                let cardNumber = Math.floor(Math.random()*quotes.length);	// produce a random number, which cannot be bigger then the number of the quotes in the array
                 let list = document.getElementById('quoteList');		// define list as a js variable from html element quoteList
                 let card = createCard(quotes[cardNumber]);			// create a card and assign the value in it in order to create a random card
                 list.appendChild(card);						// produce the card as a child of "list"
