@@ -17,7 +17,7 @@
         <div id="quoteList"></div><br>
         <button id="changeButton" onclick="window.location.reload()">Change the Card</button>
 
-		<script>
+	<script>
             let quotes = [
                 {quote: '“We cannot solve problems with the kind of thinking we employed when we came up with them.”', author: 'Albert Einstein'}, 
                 {quote: '“Learn as if you will live forever, live like you will die tomorrow.”', author: 'Mahatma Gandhi'}, 
@@ -71,45 +71,47 @@
                 {quote: '“The greater the difficulty, the more the glory in surmounting it.”', author: 'Epicurus'}
             ];
 
-            callCard();
+            callCard();	// call the function for the first time to see a card at the beginning
 
             function callCard(){
-                let cardNumber = Math.floor(Math.random()*quotes.length);
-                let list = document.getElementById('quoteList');
-                let card = createCard(quotes[cardNumber]);
-                list.appendChild(card);
+                let cardNumber = Math.floor(Math.random()*quotes.length);	// produce a random number, which cannot be bigger then the number of the quotes array
+                let list = document.getElementById('quoteList');		// define list as a js variable from html element quoteList
+                let card = createCard(quotes[cardNumber]);			// create a card and assign the value in it in order to create a random card
+                list.appendChild(card);						// produce the card as a child of "list"
             }
 
             function createCard(obj){
-                let newCard = document.createElement('div');
-                newCard.classList.add('card');
+                let newCard = document.createElement('div');	// cneate a new card as a <div>
+                newCard.classList.add('card');			// assign a css class to style the card
 
-                let newLayer = createLayer(obj.author);
-                newCard.appendChild(newLayer);
+                let newLayer = createLayer(obj.author);		// call a function to create a layer receiving textContent from quotes
+                newCard.appendChild(newLayer);			// initilize the new layer as a child of newCard
 
-                let newCover = createCover(obj.quote);
-                newCard.appendChild(newCover);
-                return newCard;
+                let newCover = createCover(obj.quote);		// call a function to create a cover receiving textContent from quotes
+                newCard.appendChild(newCover);			// initilize the new cover as a child of newCard
+                return newCard;					// return the value in order to complete creation
             }
 
+	    // createLayer function creates a layer for a new card
             function createLayer(layerText){
                 layer = document.createElement('div');  // create a <div> tag named "layer" (layer decleared as a "var" to use the variable outside the function)
-                layer.classList.add('fillOut');
-                layer.classList.add('layer');
-                layer.textContent = layerText;
+                layer.classList.add('fillOut');		// define class to style new layer element
+                layer.classList.add('layer');		// define class to style new layer element
+                layer.textContent = layerText;		// assign a text content to the new layer
 
-                layer.onclick = function(){(cover.style.left == '250px')? cover.style.left = '' : cover.style.left = '250px';}  // onclick if statement
-                return layer;
+                layer.onclick = function(){(cover.style.left == '250px')? cover.style.left = '' : cover.style.left = '250px';}  // onclick if statement to slide the cover
+                return layer;				// return the value in order to complete creation
             }
 
+	    // createCover function creates a cover for a new card
             function createCover(coverText){
                 cover = document.createElement('div');  // create a <div> tag named "cover" (cover decleared as a "var" to use the variable outside the function)
-                cover.classList.add('fillOut');
-                cover.classList.add('cover');
-                cover.textContent = coverText;
+                cover.classList.add('fillOut');		// define class to style new cover element
+                cover.classList.add('cover');		// define class to style new cover element
+                cover.textContent = coverText;		// assign a text content to the new cover
 
-                cover.onclick = function(){(cover.style.left == '250px')? cover.style.left = '' : cover.style.left = '250px';}  // onclick if statement
-                return cover;
+                cover.onclick = function(){(cover.style.left == '250px')? cover.style.left = '' : cover.style.left = '250px';}  // onclick if statement to slide the cover
+                return cover;				// return the value in order to complete creation
             }
 
         </script>
