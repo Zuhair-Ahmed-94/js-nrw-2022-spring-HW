@@ -38,14 +38,14 @@
 
         <div id="wordList"></div>
 
-		<script>
-            let options = {
+	<script>
+            let options = {			// define "options" object to assign any value from "words" later on
                 word: 'Word',
                 description: 'Description',
                 color: '#FFAB40'
             }
 
-            let words = [
+            let words = [	// create an object array named "words"
                 { word: 'Little',       description: 'Small in size.',              color: '#FF4081'},
                 { word: 'Simple',       description: 'Easily understood or done.',  color: '#FF5252'}, 
                 { word: 'Malicious',    description: 'Intending to do harm.',       color: '#FF6E40'}, 
@@ -53,52 +53,60 @@
                 { word: 'Standard',     description: 'Regularly and widely used.',  color: '#FFD740'}
             ];
 
-            function showNewCard(){
-                let num = Math.floor(Math.random()*words.length);
-                options.word = words[num].word;
-                options.description = words[num].description;
-                options.color = words[num].color;
+            function showNewCard(){	// showNewCard() function produces a new card when the button is clicked
+                let num = Math.floor(Math.random()*words.length);	// produce a random number called "num" in order to select a random card
+                options.word = words[num].word;				// assigning the content of the select card to "options" (key: word)
+                options.description = words[num].description;		// assigning the content of the select card to "options" (key: description)
+                options.color = words[num].color;			// assigning the content of the select card to "options" (key: color)
 
-                let list = document.getElementById('wordList');
-                let card = createCardDiv(options);
-                list.appendChild(card);
+                let list = document.getElementById('wordList');		// define html element "wordList" as a JS element "list"
+                let card = createCardDiv(options);			// create a card by using current "option" values
+                list.appendChild(card);					// the new "card" will be a child of "list"
             }
 
-            function createCardDiv(opt){
-                let newCard = document.createElement('div');
-                newCard.classList.add('card');
+            function createCardDiv(opt){	// "createCardDiv(opt)" function produces a new card by getting "opt" object as an argument
+                let newCard = document.createElement('div');		// create a <div> element in html
+                newCard.classList.add('card');				// assign "card" class from CSS to recently produced element (<div class="card">)
 
-                let layer = createLayerDiv(opt.word);
-                newCard.appendChild(layer);
+                let layer = createLayerDiv(opt.word);			// call "createLayerDiv()" function to produce a new layer for the new card
+                newCard.appendChild(layer);				// create this layer as a child of newCard
 
-                let cover = createCoverDiv(opt.description, opt.color);
-                newCard.appendChild(cover);
-                return newCard;
+                let cover = createCoverDiv(opt.description, opt.color);	// call "createCoverDiv()" function to produce a new cover for the new card
+                newCard.appendChild(cover);				// create this cover as a child of newCard
+                return newCard;						// return newCard as a value to complete the task
             }
 
             function createLayerDiv(layerText){
-                let layer = document.createElement('div');
-                layer.classList.add('fillParent');
-                layer.classList.add('layer');
-                layer.textContent = layerText;
-                return layer;
+                layer = document.createElement('div');		// define "layer" as a global variable to reach it outside the function (we don't need it actually)
+                layer.classList.add('fillParent');		// assign "fillParent" class from CSS to recently produced element (<div class="fillParent">)
+                layer.classList.add('layer');			// assign "layer" class from CSS to recently produced <div> element (<div class="layer">)
+                layer.textContent = layerText;			// assign a text-value to the layer
+		    
+		layer.onclick = function(){			// if "layer" is clicked, close the "cover"
+                    if(cover.style.left === '100%'){ 		
+                        cover.style.left = '';			// leave the "cover" in its original position
+                    } else { 
+                        cover.style.left = '100%';		// leave 100% space on the left of "cover" (which means slide "cover" to right 100%)
+                    }
+                }
+                return layer;					// returns layer as a value to complete the task
             }
 
             function createCoverDiv(coverText, bgColor){
-                let cover = document.createElement('div');
-                cover.classList.add('fillParent');
-                cover.classList.add('cover');
-                cover.textContent = coverText;
-                cover.style.backgroundColor = bgColor;
+                cover = document.createElement('div');		// define "cover" as a global variable to reach it within createLayerDiv() function
+                cover.classList.add('fillParent');		// assign "fillParent" class from CSS to recently produced element (<div class="fillParent">)
+                cover.classList.add('cover');			// assign "cover" class from CSS to recently produced <div> element (<div class="cover">)
+                cover.textContent = coverText;			// assign a text-value to the cover
+                cover.style.backgroundColor = bgColor;		// set background color of "cover" as "bgColor"
 
-                cover.onclick = function(){
+                cover.onclick = function(){			// if "cover" is clicked, close the "cover"
                     if(cover.style.left === '100%'){ 
-                        cover.style.left = '';
+                        cover.style.left = '';			// leave the "cover" in its original position
                     } else { 
-                        cover.style.left = '100%';
+                        cover.style.left = '100%';		// leave 100% space on the left of "cover" (which means slide "cover" to right 100%)
                     }
                 }
-                return cover;
+                return cover;					// returns cover as a value to complete the task
             }
 
         </script>
