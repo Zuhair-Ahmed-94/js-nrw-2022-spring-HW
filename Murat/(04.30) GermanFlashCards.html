@@ -75,14 +75,16 @@
                 { eng: 'quickly',   ger: 'schnell',     type: 'adverb',     color: '#0000FF'}
             ];
 
-            function addNewCard (){
-                let eng = document.getElementById('inputLayer');
-                let ger = document.getElementById('inputCover');
-                let wordType = document.getElementById('inputType');
-                wordObject.eng = eng.value;
-                wordObject.ger = ger.value;
-                wordObject.type = wordType.value;
-                if(wordObject.type === 'noun'){
+            function addNewCard(){
+                let eng = document.getElementById('inputLayer');	// define "eng" by getting the value from "inputLayer" element of html
+                let ger = document.getElementById('inputCover');	// define "ger" by getting the value from "inputCover" element of html
+                let wordType = document.getElementById('inputType');	// define "wordType" by getting the value from "inputType" element of html
+		    
+                wordObject.eng = eng.value;		//  assign the values of received values from html to "wordObject" (eng)
+                wordObject.ger = ger.value;		//  assign the values of received values from html to "wordObject" (ger)
+                wordObject.type = wordType.value;	//  assign the values of received values from html to "wordObject" (wordType)
+		    
+                if(wordObject.type === 'noun'){		// this if-else structure assign the color of the object based on the wordType (noun, verb, etc)
                     wordObject.color = '#00FF00';
                 } else if(wordObject.type === 'verb'){
                     wordObject.color = '#00FFFF';
@@ -91,61 +93,72 @@
                 } else if(wordObject.type === 'adverb'){
                     wordObject.color = '#0000FF';
                 }
-                words.push(wordObject);
+		    
+                words.push(wordObject);		// push the new object at the end of the "words[{}]" object array
                 console.log(wordObject)
-                eng.value = "";
-                ger.value = "";
-                wordType.value = "";
+                eng.value = "";			// clear the input fields after adding the new card (eng)
+                ger.value = "";			// clear the input fields after adding the new card (ger)
+                wordType.value = "";		// clear the input fields after adding the new card (wordType)
             }
 
             function showNewCard(){
-                let num = Math.floor(Math.random()*words.length);
-                wordObject.eng = words[num].eng;
-                wordObject.ger = words[num].ger;
-                wordObject.type = words[num].type;
-                wordObject.color = words[num].color;
+                let num = Math.floor(Math.random()*words.length);	// produce a random number and assign it to "num"
+                wordObject.eng = words[num].eng;			// transfer the value of the object from the array to wordObject to print the value by using wordObject
+                wordObject.ger = words[num].ger;			// transfer the value of the object from the array to wordObject (ger)
+                wordObject.type = words[num].type;			// transfer the value of the object from the array to wordObject (type)
+                wordObject.color = words[num].color;			// transfer the value of the object from the array to wordObject (color)
 
-                let list = document.getElementById('wordList');
-                let card = createCardDiv(wordObject);
-                list.appendChild(card);
+                let list = document.getElementById('wordList');		// connect JS element "list" and HTML element "wordList"
+                let card = createCardDiv(wordObject);			// call createCardDiv() function to create a <div> tag in HTML
+                list.appendChild(card);					// the new <div> tag is placed into "wordList" in HTML (by using "list" variable in JS)
                 console.log(num);
             }
 
             function createCardDiv(opt){
-                let newCard = document.createElement('div');
-                newCard.classList.add('card');
+                let newCard = document.createElement('div');		// create a <div> element in HTML (newCard)
+                newCard.classList.add('card');				// assign a class to the div element (newCard)  <div class="card">
 
-                let layer = createLayerDiv(opt.eng, opt.type);
-                newCard.appendChild(layer);
+                let layer = createLayerDiv(opt.eng, opt.type);		// call createLayerDiv() function in order to create a <div> element in HTML (layer)
+                newCard.appendChild(layer);				// create that <div> element (layer) as a child of "newCard"
 
-                let cover = createCoverDiv(opt.ger, opt.color);
-                newCard.appendChild(cover);
-                return newCard;
+                let cover = createCoverDiv(opt.ger, opt.color);		// call createCoverDiv() function in order to create a <div> element in HTML (layer)
+                newCard.appendChild(cover);				// create that <div> element (cover) as a child of "newCard"
+                return newCard;						//  return the value in order to complete the task of the function
             }
 
             function createLayerDiv(text, type){
-                let layer = document.createElement('div');
-                layer.classList.add('fillParent');
-                layer.classList.add('layer');
-                layer.textContent = text + "   (" + type + ")";
-                layer.style.backgroundColor = '#808080';
-                return layer;
+                layer = document.createElement('div');			// create a <div> element in HTML (layer), assign its value as a global variable
+                layer.classList.add('fillParent');			// assign a class to the div element (layer)  <div class="fillParent">
+                layer.classList.add('layer');				// assign a class to the div element (layer)  <div class="layer">
+                layer.textContent = text + "   (" + type + ")";		// assign a text value to the div element (layer)
+                layer.style.backgroundColor = '#808080';		// assign a backgroundcolor to the div element (layer)
+		    
+		layer.onclick = function(){		// if "layer" is clicked
+                    if(cover.style.left === '100%'){ 	// if there is 100% space left of "cover"
+                        cover.style.left = '';		// leave no space on the left of "cover"
+                    } else { 
+                        cover.style.left = '100%';	// leave a 100% space on the left of "cover" element (which means move right 100%
+                    }
+                }
+		    
+                return layer;						//  return the value in order to complete the task of the function
             }
 
             function createCoverDiv(text, color){
-                let cover = document.createElement('div');
-                cover.classList.add('fillParent');
-                cover.classList.add('cover');
-                cover.textContent = text;
-                cover.style.backgroundColor = color;
+                cover = document.createElement('div');		// create a <div> element in HTML (cover), assign its value as a global variable
+                cover.classList.add('fillParent');		// assign a class to the div element (cover)  <div class="fillParent">
+                cover.classList.add('cover');			// assign a class to the div element (cover)  <div class="cover">
+                cover.textContent = text;			// assign a text value to the div element (cover)
+                cover.style.backgroundColor = color;		// assign a backgroundcolor to the div element (cover)
 
-                cover.onclick = function(){
-                    if(cover.style.left === '100%'){ 
-                        cover.style.left = '';
+                cover.onclick = function(){		// if "cover" is clicked
+                    if(cover.style.left === '100%'){ 	// if there is 100% space left of "cover"
+                        cover.style.left = '';		// leave no space on the left of "cover"
                     } else { 
-                        cover.style.left = '100%';
+                        cover.style.left = '100%';	// leave a 100% space on the left of "cover" element (which means move right 100%
                     }
                 }
+		    
                 return cover;
             }
         </script>
