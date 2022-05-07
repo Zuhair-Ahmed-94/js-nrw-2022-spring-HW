@@ -27,7 +27,18 @@
     </p>
 
 </body>
-<script type=text/script> </script>
+<script type=text/script> 
+
+let myPara = document.getElementById('paragraph');
+let button = document.getElementById('btn');
+let colorInput = document.getElementById('input')
+
+button.addEventListener('click', () =>{
+    myPara.style.backgroundColor = colorInput.value;
+    myPara.textContent=colorInput.value;
+})
+
+</script>
 
 </script>
 </html>
