@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Papers-Scissors Game</title>
+    <style>
+        * {text-align: center;}
+        td {border: 1px solid black; width: 200px;}
+    </style>
+</head>
+<body>
+    <h1>Play Rock-Papers-Scissors</h1>
+
+    <table>
+        <th>You</th>
+        <th>Computer</th>
+        <tr>
+            <td>
+                <button onclick="play('rock')">Rock</button>
+                <button onclick="play('paper')">Paper</button>
+                <button onclick="play('scissors')">Scissors</button>
+            </td>
+            <td>Rock-Paper-Scissors</td>
+        </tr>
+        <tr>
+            <td id="youSelect">select</td>
+            <td id="compSelect">random</td>
+        </tr>
+        <tr>
+            <td id="result" colspan="2"> - </td>
+        </tr>
+        <tr>
+            <td id="humanScore">Your Score: </td>
+            <td id="compScore">Computers Score: </td>
+        </tr>
+    </table>
+
+    <script>
+        let human = "";
+        let computer = "";
+        let humanScore = 0;
+        let computerScore = 0;
+        let result = "";
+
+        function play(string){
+
+            let random = Math.floor(Math.random()*3);
+            let human = string;
+            let computer = "";
+            let result = "";
+
+            if (random == 0) {computer = "rock";} else 
+            if (random == 1) {computer = "paper";} else 
+            if (random == 2) {computer = "scissors";}
+
+            if (human == "rock" && computer == "scissors"){
+                humanScore++;
+                result = "You win!";} else 
+            if (human == "paper" && computer == "rock"){
+                humanScore++;
+                result = "You win!";} else 
+            if (human == "scissors" && computer == "paper"){
+                humanScore++;
+                result = "You win!";} else
+            if (computer == "rock" && human == "scissors"){
+                computerScore++;
+                result = "Computer wins!";} else 
+            if (computer == "paper" && human == "rock"){
+                computerScore++;
+                result = "Computer wins!";} else 
+            if (computer == "scissors" && human == "paper"){
+                computerScore++;
+                result = "Computer wins!";} 
+            else {result = "Tile"}
+
+            let youSelect = document.getElementById('youSelect');
+            youSelect.textContent = human;
+
+            let compSelect = document.getElementById('compSelect');
+            compSelect.textContent = computer;
+
+            let resultOutput = document.getElementById('result');
+            resultOutput.textContent = result;
+
+            let humScore = document.getElementById('humanScore');
+            humScore.textContent = "Your Score: " + humanScore;
+
+            let compScore = document.getElementById('compScore');
+            compScore.textContent =  "Computers Score: " + computerScore;
+
+            console.log(human, "-", computer);
+            console.log(result);
+        }
+    </script>
+</body>
+</html>
