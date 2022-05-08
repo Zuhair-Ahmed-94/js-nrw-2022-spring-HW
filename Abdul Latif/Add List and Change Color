@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+
+
+</style>
+
+</head>
+<body> 
+
+    <h1>This is Color Changer</h1>
+    
+    <input type="text" id="colorInput" />
+    <button onclick="setBackground()">Change</button>
+    <div id="myDiv">Color</div>
+
+    <ul id="colorlist">Color List</ul>
+
+
+
+</body>
+<script type = "text?script">
+
+
+function setBackground() {
+    let input = document.getElementById('colorInput');
+    let color = input.value;
+    // let div = document.getElementById('myDiv');
+    // div.style.backgroundColor = color;
+    // input.value = "";
+    // div.textContent= color
+let listItems = document.createElement('li');
+listItems.textContent = color;
+listItems.style.color = color;
+
+let colorList = document.getElementById('colorlist');
+colorList.appendChild(listItems);
+
+
+}
+
+
+</script>
