@@ -8,6 +8,7 @@
     <style>
         * {text-align: center;}
         td {border: 1px solid black; width: 200px;}
+        img {width: 100px; height: 100px;}
     </style>
 </head>
 <body>
@@ -25,8 +26,8 @@
             <td>Rock-Paper-Scissors</td>
         </tr>
         <tr>
-            <td id="youSelect">select</td>
-            <td id="compSelect">random</td>
+            <td><img id="youSelect" /></td>
+            <td><img id="compSelect" /></td>
         </tr>
         <tr>
             <td id="result" colspan="2"> - </td>
@@ -44,6 +45,13 @@
         let computerScore = 0;
         let result = "";
 
+        let rockImage = "https://www.bing.com/th?id=OIP.RFXBEPg4Id7JqVHql68mGwHaHH&w=111&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
+        let paperImage = "https://www.bing.com/th?id=OIP.RCX_mW_ZB97um2qy-u_OugHaJ6&w=79&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
+        let scissorsImage = "https://www.bing.com/th?id=OIP.lNLBhF6vSDrk5Jnmd3wt2AHaGg&w=113&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
+
+        let youSelect = document.getElementById('youSelect'); 
+        let compSelect = document.getElementById('compSelect');
+
         function play(string){
 
             let random = Math.floor(Math.random()*3);
@@ -51,9 +59,22 @@
             let computer = "";
             let result = "";
 
-            if (random == 0) {computer = "rock";} else 
-            if (random == 1) {computer = "paper";} else 
-            if (random == 2) {computer = "scissors";}
+            if (random == 0){
+                computer = "rock";
+                compSelect.src = rockImage;} else 
+            if (random == 1){
+                computer = "paper";
+                compSelect.src = paperImage;} else 
+            if (random == 2){
+                computer = "scissors";
+                compSelect.src = scissorsImage;}
+
+            if (human == "rock"){
+                youSelect.src = rockImage;} else 
+            if (human == "paper"){
+                youSelect.src = paperImage;} else 
+            if(human == "scissors"){
+                youSelect.src = scissorsImage;}
 
             if (human == "rock" && computer == "scissors"){
                 humanScore++;
@@ -63,7 +84,7 @@
                 result = "You win!";} else 
             if (human == "scissors" && computer == "paper"){
                 humanScore++;
-                result = "You win!";} else
+                result = "You win!";} else 
             if (computer == "rock" && human == "scissors"){
                 computerScore++;
                 result = "Computer wins!";} else 
@@ -73,13 +94,7 @@
             if (computer == "scissors" && human == "paper"){
                 computerScore++;
                 result = "Computer wins!";} 
-            else {result = "Tile"}
-
-            let youSelect = document.getElementById('youSelect');
-            youSelect.textContent = human;
-
-            let compSelect = document.getElementById('compSelect');
-            compSelect.textContent = computer;
+            else {result = "Tile";}
 
             let resultOutput = document.getElementById('result');
             resultOutput.textContent = result;
