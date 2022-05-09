@@ -19,9 +19,9 @@
         <th>Computer</th>
         <tr>
             <td>
-                <button onclick="play('rock')">Rock</button>
-                <button onclick="play('paper')">Paper</button>
-                <button onclick="play('scissors')">Scissors</button>
+                <button onclick="play('rock')">Rock</button>            // call function play('rock')
+                <button onclick="play('paper')">Paper</button>          // call function play('paper')
+                <button onclick="play('scissors')">Scissors</button>    // call function play('scissors')
             </td>
             <td>Rock-Paper-Scissors</td>
         </tr>
@@ -39,74 +39,74 @@
     </table>
 
     <script>
-        let human = "";
-        let computer = "";
-        let humanScore = 0;
-        let computerScore = 0;
-        let result = "";
+        let human = "";         // users choice for the turn
+        let computer = "";      // computers choice for the turn
+        let result = "";        // result for the turn
+        let humanScore = 0;     // recent score of user
+        let computerScore = 0;  // recent score of computer
 
-        let rockImage = "https://www.bing.com/th?id=OIP.RFXBEPg4Id7JqVHql68mGwHaHH&w=111&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
-        let paperImage = "https://www.bing.com/th?id=OIP.RCX_mW_ZB97um2qy-u_OugHaJ6&w=79&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
-        let scissorsImage = "https://www.bing.com/th?id=OIP.lNLBhF6vSDrk5Jnmd3wt2AHaGg&w=113&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";
+        let rockImage = "https://www.bing.com/th?id=OIP.RFXBEPg4Id7JqVHql68mGwHaHH&w=111&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";       // image for rock
+        let paperImage = "https://www.bing.com/th?id=OIP.RCX_mW_ZB97um2qy-u_OugHaJ6&w=79&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";       // image for paper
+        let scissorsImage = "https://www.bing.com/th?id=OIP.lNLBhF6vSDrk5Jnmd3wt2AHaGg&w=113&h=106&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2";   // image for scissors
 
-        let youSelect = document.getElementById('youSelect'); 
-        let compSelect = document.getElementById('compSelect');
+        let youSelect = document.getElementById('youSelect');   // defining the field to replace the image according to the users choice
+        let compSelect = document.getElementById('compSelect'); // defining the field to replace the image according to the computers choice
 
-        function play(string){
-
-            let random = Math.floor(Math.random()*3);
-            let human = string;
-            let computer = "";
+        function play(string){                          // function play() receives a string a string based on the clicked button by user
+            let random = Math.floor(Math.random()*3);   // produce a random number between 0-2 (0: "rock", 1: "paper", 2: "scissors")
+            let human = string;                         // users choice received as a string
+            let computer = "";                          // computers choice as an empty string (the string is assigned between code-lines: 61-76
             let result = "";
 
             if (random == 0){
-                computer = "rock";
-                compSelect.src = rockImage;} else 
-            if (random == 1){
-                computer = "paper";
-                compSelect.src = paperImage;} else 
-            if (random == 2){
-                computer = "scissors";
-                compSelect.src = scissorsImage;}
+                computer = "rock";                  // if random number is 0, computers choice is "rock"
+                compSelect.src = rockImage;         // assign rocks image as computers choice
+            } else if (random == 1){
+                computer = "paper";                 // if random number is 1, computers choice is "paper"
+                compSelect.src = paperImage;        // assign papers image as computers choice
+            } else if (random == 2){
+                computer = "scissors";              // if random number is 2, computers choice is "scissors"
+                compSelect.src = scissorsImage;     // assign scissors' image as computers choice
+            }
 
             if (human == "rock"){
-                youSelect.src = rockImage;} else 
-            if (human == "paper"){
-                youSelect.src = paperImage;} else 
-            if(human == "scissors"){
-                youSelect.src = scissorsImage;}
+                youSelect.src = rockImage;      // assign rock image as users choice
+            } else if (human == "paper"){
+                youSelect.src = paperImage;     // assign paper image as users choice
+            } else if(human == "scissors"){
+                youSelect.src = scissorsImage;  // assign scissors image as users choice
+            }
 
-            if (human == "rock" && computer == "scissors"){
-                humanScore++;
-                result = "You win!";} else 
-            if (human == "paper" && computer == "rock"){
-                humanScore++;
-                result = "You win!";} else 
-            if (human == "scissors" && computer == "paper"){
-                humanScore++;
-                result = "You win!";} else 
-            if (computer == "rock" && human == "scissors"){
-                computerScore++;
-                result = "Computer wins!";} else 
-            if (computer == "paper" && human == "rock"){
-                computerScore++;
-                result = "Computer wins!";} else 
-            if (computer == "scissors" && human == "paper"){
-                computerScore++;
-                result = "Computer wins!";} 
-            else {result = "Tile";}
+            if (human == "rock" && computer == "scissors"){         // if user selects "rock" and computer selects "scissors"
+                humanScore++;                                       // increase users score by 1
+                result = "You win!";                                // assign result message "You win!"
+            } else if (human == "paper" && computer == "rock"){     // if user selects "paper" and computer selects "rock"
+                humanScore++;                                       // increase users score by 1
+                result = "You win!";                                // assign result message "You win!"
+            } else if (human == "scissors" && computer == "paper"){ // if user selects "scissors" and computer selects "paper"
+                humanScore++;                                       // increase users score by 1
+                result = "You win!";                                // assign result message "You win!"
+            } else if (computer == "rock" && human == "scissors"){  // if computer selects "rock" and user selects "scissors"
+                computerScore++;                                    // increase computers score by 1
+                result = "Computer wins!";                          // assign result message "Computer wins!"
+            } else if (computer == "paper" && human == "rock"){     // if computer selects "paper" and user selects "rock"
+                computerScore++;                                    // increase computers score by 1
+                result = "Computer wins!";                          // assign result message "Computer wins!"
+            } else if (computer == "scissors" && human == "paper"){ // if computer selects "scissors" and user selects "paper"
+                computerScore++;                                    // increase computers score by 1
+                result = "Computer wins!";                          // assign result message "Computer wins!"
+            } else {
+                result = "Tile!";                                    // assign result message "Tile!"
+            }
 
-            let resultOutput = document.getElementById('result');
-            resultOutput.textContent = result;
+            let resultOutput = document.getElementById('result');           // define a JS variable in order to define html field to print current result for the turn
+            resultOutput.textContent = result;                              // assign a string value to the output message
 
-            let humScore = document.getElementById('humanScore');
-            humScore.textContent = "Your Score: " + humanScore;
+            let humScore = document.getElementById('humanScore');           // define a JS variable in order to define html field to print users score
+            humScore.textContent = "Your Score: " + humanScore;             // assign a string value to print users score as an output message
 
-            let compScore = document.getElementById('compScore');
-            compScore.textContent =  "Computers Score: " + computerScore;
-
-            console.log(human, "-", computer);
-            console.log(result);
+            let compScore = document.getElementById('compScore');           // define a JS variable in order to define html field to print computers score
+            compScore.textContent =  "Computers Score: " + computerScore;   // assign a string value to print computers score as an output message
         }
     </script>
 </body>
