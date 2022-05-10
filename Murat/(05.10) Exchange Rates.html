@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        img {width: 100px; height: auto;}
+    </style>
+    <title>Learning JavaScript</title>
+</head>
+<body>
+    <h1>Exchange Rates: </h1>
+
+    <script>
+        async function getJSON(){
+            let request = new Request('https://api.coingecko.com/api/v3/exchange_rates');
+            let response = await fetch(request);
+            result = await response.json();
+
+            let line1 = document.createElement('p');
+            document.body.appendChild(line1);
+            rate = result.rates.usd.value / result.rates.eur.value;
+            line1.textContent = `1 EUR = ${rate.toFixed(2)} USD`;
+
+            let line2 = document.createElement('p');
+            document.body.appendChild(line2);
+            rate = result.rates.cad.value / result.rates.eur.value;
+            line2.textContent = `1 EUR = ${rate.toFixed(2)} CAD`;
+
+            let line3 = document.createElement('p');
+            document.body.appendChild(line3);
+            rate = result.rates.jpy.value / result.rates.eur.value;
+            line3.textContent = `1 EUR = ${rate.toFixed(2)} JPY`;
+
+            let line4 = document.createElement('p');
+            document.body.appendChild(line4);
+            rate = result.rates.cny.value / result.rates.eur.value;
+            line4.textContent = `1 EUR = ${rate.toFixed(2)} CNY`;
+
+            let line5 = document.createElement('p');
+            document.body.appendChild(line5);
+            rate = result.rates.try.value / result.rates.eur.value;
+            line5.textContent = `1 EUR = ${rate.toFixed(2)} TRY`;
+        }
+
+        getJSON();
+    </script>
+</body>
+</html>
