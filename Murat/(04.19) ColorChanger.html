@@ -32,7 +32,7 @@
 			<option style="color:#800000;" value="Maroon">Maroon</option>
 		</select>
 		<button onclick="changeColor()">Change Color</button>
-		<div id="textLine">Hello Colors!</div>
+		<div id="textLine"></div>
 		<ul id="colorList"></ul>
 
 		<script>
@@ -47,7 +47,7 @@
     				colorList.appendChild(listItem);
     				listItem.textContent = color;
     				listItem.style.backgroundColor = color;
-    				listItem.onclick = function () {
+    				listItem.onclick = () => {
         				textLine.textContent = `Color: ${color}`;
         				textLine.style.backgroundColor = color;
     				}
