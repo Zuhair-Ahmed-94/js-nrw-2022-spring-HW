@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        img {width: 100px; height: auto;}
+    </style>
+    <title>Learning JavaScript</title>
+</head>
+<body>
+    <h1>Check my name! </h1>
+    <input type="text" id="input">
+    <button type="submit" onclick="checkName()">Check</button>
+
+    <script>
+        async function checkName(){
+            let input = document.getElementById('input');
+
+            let genderJsonLink = 'https://api.genderize.io/?name=';
+            genderJsonLink += input.value;
+
+            let genderRequest = new Request(genderJsonLink);
+            let genderResponse = await fetch(genderRequest);
+            genderResult = await genderResponse.json();
+
+            let name = document.createElement('h2');
+            document.body.appendChild(name);
+            name.textContent = input.value;
+
+            let gender = document.createElement('p');
+            document.body.appendChild(gender);
+            gender.textContent = `${genderResult.gender} ${genderResult.probability*100}%`;
+
+            let nationalityJsonLink = 'https://api.nationalize.io/?name=';
+            nationalityJsonLink += input.value;
+
+            let nationalityRequest = new Request(nationalityJsonLink);
+            let nationalityResponse = await fetch(nationalityRequest);
+            natResult = await nationalityResponse.json();
+
+            for(let i=0; i<natResult.country.length; i++){
+                let nationality = document.createElement('p');
+                document.body.appendChild(nationality);
+                let pro = natResult.country[i].probability*100;
+                nationality.textContent = `${natResult.country[i].country_id}: ${pro.toFixed(2)}%`;
+            }
+        }
+    </script>
+</body>
+</html>
