@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <h1>Check my name! </h1>
+    <h1>Fetch Detail</h1>
     <input type="text" id="input">
     <button onclick="fetchData()">Find Detail</button>
     
@@ -30,13 +30,12 @@
     let natResponse = await fetch('https://api.nationalize.io/?name='+ userInput.value); 
     let natResult = await natResponse.json();
     let nationality = document.createElement('p');
-    for(let i = o; i< natResult.country.length; i++){    
+    for(let i = 0; i< natResult.country; i++){    
     document.body.appendChild(nationality);
     let pro = natResult[i].probability*100;
     nationality.textContent= `${natResult.country[i].country_id}: ${pro.toFixed(2)}%`;
 }
 }
-fetchData();
 
 </script>
     
