@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style src="style.css"></style>
+    <title>Document</title>
+
+</head>
+<body>
+    <h1>Check my name! </h1>
+    <input type="text" id="input">
+    <button onclick="fetchData()">Find Detail</button>
+    
+    <script>
+    async function fetchData() {
+    let userInput = document.getElementById('input');
+
+    let name =document.createElement('p');
+    name.textContent=input.value;
+    document.body.appendChild(name);
+
+
+    let genderResponse = await fetch('https://api.genderize.io/?name='+ userInput.value); 
+    let genderResult = await genderResponse.json();
+    let gender = document.createElement('p');
+    document.body.appendChild(gender);
+    gender.textContent = genderResult.gender;
+
+    let natResponse = await fetch('https://api.nationalize.io/?name='+ userInput.value); 
+    let natResult = await natResponse.json();
+    let nationality = document.createElement('p');
+    for(let i = o; i< natResult.country.length; i++){    
+    document.body.appendChild(nationality);
+    let pro = natResult[i].probability*100;
+    nationality.textContent= `${natResult.country[i].country_id}: ${pro.toFixed(2)}%`;
+}
+}
+fetchData();
+
+</script>
+    
+</body>
+</html>
