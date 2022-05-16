@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <h1>Fetch Detail</h1>
+    <h1>Fetch Info</h1>
     <input type="text" id="input">
     <button onclick="fetchData()">Find Detail</button>
     
