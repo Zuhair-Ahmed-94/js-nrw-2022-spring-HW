@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+    <!-- <link rel="stylesheet" href="Style.css"> -->
+</head>
+<body>
+    <h1>JSON</h1>
+
+    <p>First name: </p><input type="text" id="fname"><br>
+    <p>Last name: </p><input type="text" id="lname"><br>
+    <p>E-mail: </p><input type="email" id="email"><br>
+    <button id="addContact" onclick="addContact()">Add Contact</button>
+
+    <ul id="savedContact"></ul>
+    <script>
+
+        let contactList = getData();
+        displayList();
+
+        function addContact(){
+            let firstName = document.getElementById('fname').value;
+            let lastName = document.getElementById('lname').value;
+            let email = document.getElementById('email').value;
+
+            let contactObj = {
+                fName: firstName,
+                lName: lastName,
+                eMail: email
+            }
+
+            contactList.push(contactObj);
+            displayList();
+            saveData();
+        }
+
+        function displayList(){
+            let contactField = document.getElementById('savedContact');
+            savedContact.innerHTML = "";
+
+            console.log("This is contactList: ", contactList)
+            console.log(contactList.length)
+            for(let i=0; i<contactList.length; i++){
+                let myObj = contactList[i];
+                let contactInfo = document.createElement('li');
+                // console.log(i, myObj.fName)
+                contactField.appendChild(contactInfo);
+                contactInfo.textContent = myObj.fName + " " + myObj.lName + ": " + myObj.eMail;
+            }
+        }
+
+        function saveData(){
+            let usersData = JSON.stringify(contactList);
+            localStorage.setItem('userList', usersData); // I can choose any name for Key but the value is supposed to be the decleared datas name in the function
+        }
+
+        function getData(){
+            let storedData = localStorage.getItem('userList');
+
+            return JSON.parse(storedData);
+        }
+
+    </script>
+    <!-- <script src="main.js"></script> -->
+</body>
+</html>
