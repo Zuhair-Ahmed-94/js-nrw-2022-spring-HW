@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+    <!-- <link rel="stylesheet" href="Style.css"> -->
+</head>
+<body>
+    <h1>Restaurant Storage</h1>
+
+    <script>
+        let recipes = {
+            pizza: {
+                flourInGrams: 200,
+                tomatoSauceInMl: 100,
+                mixedHerbsInGrams: 20,
+                cheeseInGrams: 100,
+            },
+            pasta: {
+                flourInGrams: 100,
+                eggs: 1,
+                tomatoSauceInMl: 100,
+                beefInGrams: 100,
+                mixedHerbsInGrams: 20,
+                cheeseInGrams: 25,
+            },
+        };
+
+        let initialKitchenStorage = {
+            flourInGrams: 10000,
+            eggs: 48,
+            tomatoSauceInMl: 2000,
+            beefInGrams: 10000,
+            mixedHerbsInGrams: 2000,
+            cheeseInGrams: 10000,
+        };
+
+        let currentKitchenStorage = initialKitchenStorage;
+
+        function itemOrder(order, kitchenStorage){
+            let orderedItem = {};
+
+            for(let key in recipes){
+                if(key == order){
+                    orderedItem = recipes[key]; // orderedItem = "pizza";
+                }
+            }
+
+            for(let key in orderedItem){
+                kitchenStorage[key] -= orderedItem[key];    // decreasing the amount from kitchenStorage
+            }
+
+            return kitchenStorage;
+        }
+
+        currentKitchenStorage = itemOrder("pizza", currentKitchenStorage);
+        console.log(currentKitchenStorage);
+    </script>
+    <!-- <script src="main.js"></script> -->
+</body>
+</html>
