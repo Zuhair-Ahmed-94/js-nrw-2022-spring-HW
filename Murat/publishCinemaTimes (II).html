@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+    <!-- <link rel="stylesheet" href="Style.css"> -->
+</head>
+<body>
+    <h1>Cinema Schedule:</h1>
+
+    <script>
+        let movieDisplayNames = {
+            theRoom: "The Room",
+            starWars: "Star Wars: Revenge of the Sith (Episode III)",
+            marvel: "Avengers: Endgame",
+        };
+
+        let cinemaTimes = {
+            monday: { theRoom: [10, 13, 17, 22], marvel: [20, 23] },
+            tuesday: { starWars: [15], marvel: [20, 23] },
+            wednesday: { theRoom: [10, 13, 17, 22], marvel: [20, 23] },
+            thursday: { theRoom: [10, 22], starWars: [15, 17] },
+            friday: { theRoom: [10, 13, 17, 22], starWars: [15, 17], marvel: [20, 23] },
+            saturday: { theRoom: [10, 13, 17, 22], starWars: [15, 17], marvel: [20, 23] },
+            sunday: { theRoom: [10, 13, 17], starWars: [10, 15, 17, 23], marvel: [20, 23],},
+        };
+
+        function movies(timeTable, day){
+            let dayMovies = {};
+
+            for(let key in cinemaTimes){
+                if(day == key){
+                    dayMovies = timeTable[key];
+                }
+            }
+            
+            for(let key in dayMovies){
+                console.log(movieDisplayNames[key]);
+            }
+        }
+        movies(cinemaTimes, "monday");
+    </script>
+</body>
+</html>

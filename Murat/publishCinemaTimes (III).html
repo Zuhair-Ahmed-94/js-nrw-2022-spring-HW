@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+</head>
+<body>
+    <h1>Cinema Schedule:</h1>
+
+    <script>
+        let movieTranslations = {
+            en: {
+                theRoom: "The Room",
+                starWars: "Star Wars: Revenge of the Sith (Episode III)",
+                marvel: "Avengers: Endgame",
+            },
+            de: {
+                theRoom: "das Zimmer",
+                starWars: "Star Wars: Die Rache der Sith (Episode III)",
+                marvel: "Avengers: Spiel beenden",
+            },
+        };
+
+        let cinemaTimes = {
+            monday: { theRoom: [10, 13, 17, 22], marvel: [20, 23] },
+            tuesday: { starWars: [15], marvel: [20, 23] },
+            wednesday: { theRoom: [10, 13, 17, 22], marvel: [20, 23] },
+            thursday: { theRoom: [10, 22], starWars: [15, 17] },
+            friday: { theRoom: [10, 13, 17, 22], starWars: [15, 18], marvel: [20, 23] },
+            saturday: { theRoom: [10, 13, 17, 22], starWars: [15, 18], marvel: [20, 23] },
+            sunday: { theRoom: [10, 13, 17], starWars: [10, 15, 18, 23], marvel: [16, 20, 22], },
+        };
+
+        function availableMovies(schedule, names, day, lang){
+            let sessions = {};
+            let movieNames = {};
+
+            for(let key in schedule){
+                if(key == day){
+                    sessions = schedule[key];
+                }
+            }
+
+            for(let key in names){
+                if(key == lang){
+                    movieNames = names[key];
+                }
+            }
+
+            for(let key in movieNames){
+                console.log(movieNames[key], ": ", schedule[day][key]);
+            }
+        }
+
+        availableMovies(cinemaTimes, movieTranslations, 'saturday', 'de');
+    </script>
+</body>
+</html>

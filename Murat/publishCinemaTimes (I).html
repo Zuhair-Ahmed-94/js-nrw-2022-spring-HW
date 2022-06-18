@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+    <!-- <link rel="stylesheet" href="Style.css"> -->
+</head>
+<body>
+    <h1>Cinema Schedule:</h1>
+
+    <script>
+        let cinemaTimes = {
+            monday: [10, 13, 17, 22],
+            tuesday: [10, 13, 17, 22],
+            wednesday: [13, 17, 22],
+            thursday: [10, 17, 22],
+            friday: [10, 13, 22, 23],
+            saturday: [10, 13, 14, 17, 22],
+            sunday: [10, 13, 17, 19, 20, 22],
+        };
+
+        function dayWithMostTimes(schedule){
+            let day = "monday";
+
+            for(let key in schedule){
+                if(schedule[key].length > schedule[day].length) {day = key};
+            }
+
+            console.log(day);
+            return day;
+        }
+
+        dayWithMostTimes(cinemaTimes);
+    </script>
+</body>
+</html>
