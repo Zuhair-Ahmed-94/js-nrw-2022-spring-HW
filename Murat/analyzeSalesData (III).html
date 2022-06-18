@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning JS</title>
+</head>
+<body>
+    <h1>Sales Data Analyze: </h1>
+
+    <script>
+        let quarterlySalesInEuro = {
+            Jan: [12, 34, 25, 6, 54, 8, 98, 76, 45, 78],
+            Feb: [54, 8, 98, 76],
+            March: [8, 98, 76, 45, 78],
+        };
+        function numOfSales(sales){
+            return sales.length;
+        }
+        function totalRevenue(sales){
+            let totalSales = 0;
+            for(let i=0; i<sales.length; i++){
+                totalSales += sales[i];
+            }
+            return totalSales;
+        }
+        function highestRevenue(sales){
+            let highestRev = sales[0];
+            for(let i=1; i<sales.length; i++){
+                if(sales[i]>highestRev) highestRev = sales[i];
+            }
+            return highestRev;
+        }
+        function averageRevenue(sales){
+            return totalRevenue(sales)/sales.length;
+        }
+        for(let key in quarterlySalesInEuro){
+            console.log("The number of sales of " + key + ": " + numOfSales(quarterlySalesInEuro[key]));
+            console.log("The total revenue of " + key + " : €" + totalRevenue(quarterlySalesInEuro[key]));
+            console.log("The highes revenue of " + key + ": €" + highestRevenue(quarterlySalesInEuro[key]));
+            console.log("The average Revenue of " + key + ": €" + averageRevenue(quarterlySalesInEuro[key]));
+        }
+    </script>
+</body>
+</html>
