@@ -1,0 +1,23 @@
+let arr = [2, 1, 4, 5, 7, 6, 3, 8]
+
+function selectionSort() {
+  for (let i = 0; i < arr.length-1; i++) {
+    let min = i
+    for(let j = i+1; j < arr.length; j++) {
+      if (arr[j] < arr[min]) {
+    min = j
+      }
+    }
+    if (i !== min) {
+       let temp = arr[i]
+    arr[i] = arr[min]
+      arr[min] = temp
+    }
+    
+  } 
+  return arr
+  
+}
+
+
+console.log(selectionSort(arr))
