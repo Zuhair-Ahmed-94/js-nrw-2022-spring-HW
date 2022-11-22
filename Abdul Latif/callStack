@@ -1,0 +1,14 @@
+function greeting(name) {
+  console.log("Hello, " + name )
+  greeting2(name)
+}
+
+function greeting2(name) {
+  console.log("hi, " + name)
+  bye(name)
+}
+function bye(name) {
+  console.log("bye " + name)
+}
+
+greeting("ahmad")
